@@ -2,8 +2,18 @@ package example.wgtech.rxjava.chapter2;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
-import io.reactivex.functions.Consumer;
 
+/**
+ * Observable.create() 예제
+ *
+ * Observable.create() 사용시 주의 사항
+ * 1. Observable이 구독 해지(dispose) 되었을 때 등록된 콜백을 모두 해제해야한다.
+ *    그렇지 않으면 잠재적으로 메모리 누수(Memory Leak)이 발생된다.
+ * 2. 구독자가 구독하는 동안에만 onNext와 onComplete 이벤트를 호출해야 합니다.
+ * 3. 에러가 발생했을 때는 반드시 onError 이벤트로만 에러를 전달해야한다.
+ * 4. 배압(Back Pressure)을 직접 처리해야 한다.
+ *
+ */
 public class ObservableCreateExample {
     private void basic() {
         Observable<Integer> source = Observable.create(
@@ -79,25 +89,21 @@ public class ObservableCreateExample {
                 }
         );
 
-        source.subscribe(new Consumer<Integer>() {
-            @Override
-            public void accept(Integer integer) throws Exception {
-                System.out.println("Result : " + integer);
 
-            }
+        source.subscribe(integer -> {
+            System.out.println("Result : " + integer);
         });
-
         /**
-         *  source.subscribe(integer -> {
-         *     System.out.println("Result : " + integer);
+         *  source.subscribe(new Consumer<Integer>() {
+         *    @Override
+         *    public void accept(Integer integer) throws Exception {
+         *       System.out.println("Result : " + integer);
+         *
+         *    }
          *  });
          *
          *  와 동일하다.
          */
-
-
-
-
 
     }
 
