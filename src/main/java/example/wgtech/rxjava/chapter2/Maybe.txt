@@ -1,0 +1,13 @@
+Maybe 클래스는 RxJava 2에 처음 도입된 Observable의 또 다른 특수 형태이다.
+우리말로는 '아마도'라는 뜻을 지닌 것처럼, Single 클래스와 마찬가지로 최대 데이터 하나를 가질 수 있지만
+데이터 발행없이 바로 데이터 발생을 완료할 수도, 완료가 안 될 수도 있습니다.
+
+이는, Single 클래스는 1개 완료, Maybe 클래스는 0개 또는 1개 완료시킬 수 있습니다.
+
+Maybe 클래스는 Single 클래스에 onComplete 이벤트가 추가된 형태다.
+
+Maybe 객체는 Maybe 클래스를 이용해 생성할 수 있지만,
+주로 Observable의 특정 연산자를 통해 생성한다.
+
+Maybe 객체를 생성할 수 있는 reactive 연산자는 elementAt(), firstElement(),
+flatMapMaybe(), lastElement(), reduce(), singleElement() 함수 등이 있다.
