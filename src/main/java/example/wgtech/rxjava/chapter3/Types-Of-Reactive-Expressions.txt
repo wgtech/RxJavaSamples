@@ -1,0 +1,33 @@
+* 리액티브 연산자 분류
+1. 생성 (Creating) 연산자
+- Observable, Single 클래스 등으로 데이터의 흐름을 만들어내는 함수.
+- create(), just(), fromArray(), interval(), range(), timer(), defer() 등
+- 모든 RxJava 프로그래밍의 시작 연산자
+
+2. 변환 (Transforming) 연산자
+- 어떤 입력을 받아서 원하는 데이터만 걸러낸다.
+- map(), flatMap() 등
+
+3. 필터 (Filter) 연산자
+- 입력 데이터 중 원하는 데이터만 걸러낸다.
+- filter(), first(), take() 등
+
+4. 합성 (Combining) 연산자
+- 생성 연산자와는 다르게, 합성 연산자는 여러 Observable을 조립하는 역할을 한다.
+- RxJava의 프로그래밍 묘미는 다수 Observable을 생성하고 조합하는 것이다.
+
+5. 오류 처리 (Error Handling) 연산자
+- onErrorReturn(), onErrorResumeNext(), retry() 등
+
+6. 유틸리티 (Utility) 연산자
+- 비동기 프로그래밍을 지원하는 연산자이다.
+- subscribeOn(), observeOn() 등
+
+7. 조건 (Conditional) 연산자
+- Observable의 흐름을 제어하는 역할을 한다.
+
+8. 수학과 집합형 (Mathematical and Aggregate) 연산자
+- 수학 함수와 연관있는 연산자.
+
+9. 배압 (Back pressure) 연산자
+- 배압 이슈에 대응한다.
