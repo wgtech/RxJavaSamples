@@ -25,16 +25,17 @@ public class ReduceQueryTvSales {
 
         Maybe<Integer> tvSales = Observable.fromIterable(sales)
                                     // 2. 매출 데이터 중 TV 매출을 필터링함
-                                    .filter(sale -> "TV".equals(sale.getLeft())) // Pair의 L 부분이 TV인 것을 ㅍ
+                                    .filter(sale -> "TV".equals(sale.getLeft())) // Pair의 L 부분이 TV인 것을 필터링한다.
                                     .map(sale -> sale.getRight()) // 가격으로 매핑
 
                                     // 3. TV 매출의 합을 구함
                                     .reduce((sale1, sale2) -> sale1 + sale2);
+
+        tvSales.subscribe(System.out::println); // 2500 + 1600 = 4100 출력
     }
 
     public static void main(String[] args) {
         ReduceQueryTvSales reduceQueryTvSales = new ReduceQueryTvSales();
-
         reduceQueryTvSales.run();
     }
 }
