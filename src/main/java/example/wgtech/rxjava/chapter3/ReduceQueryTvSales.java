@@ -31,7 +31,7 @@ public class ReduceQueryTvSales {
                                     // 3. TV 매출의 합을 구함
                                     .reduce((sale1, sale2) -> sale1 + sale2);
 
-        tvSales.subscribe(System.out::println); // 2500 + 1600 = 4100 출력
+        tvSales.subscribe(tot -> System.out.println("TV Sales: $" + tot)); // 2500 + 1600 = 4100 출력
     }
 
     public static void main(String[] args) {
