@@ -15,7 +15,8 @@ public class IntervalExample {
 
     public static void main(String[] args) {
         IntervalExample e = new IntervalExample();
-        e.printNumbers();
+        // e.printNumbers(); // example 1
+        e.noInitialDelay(); // example 2
     }
 
     public void origin() { // 함수 원형
@@ -44,7 +45,17 @@ public class IntervalExample {
                                             .map(data -> (data + 1) * 100)
                                             .take(5);
         source.subscribe(Log::it);
-        CommonUtils.sleep(100);
+        CommonUtils.sleep(100); // 다른 스레드 (RxComputationThreadPool-1) 에서 실행이 완료될 때까지 기다려야하기 때문이다. (Sleep 처리 되지 않으면 Thread 가 종료된다)
+    }
+
+
+    public void noInitialDelay() {
+        CommonUtils.exampleStart();
+        Observable<Long> source = Observable.interval(0L, 100L, TimeUnit.MILLISECONDS) // 초기값을 0으로 설정하면 시간값 자체도 줄어들게 된다.
+                                            .map(val -> val + 100)
+                                            .take(5);
+        source.subscribe(Log::it);
+        CommonUtils.sleep(1000); // 다른 스레드 (RxComputationThreadPool-1) 에서 실행이 완료될 때까지 기다려야하기 때문이다. (Sleep 처리 되지 않으면 Thread 가 종료된다)
     }
 
 
